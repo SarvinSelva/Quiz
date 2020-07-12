@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="com.filesys.ValuateQuiz"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>APJ Quiz</title>
+<style type="text/css">
+    <%@include file="bootstrap/css/bootstrap.css" %>
+    <%@include file="bootstrap/css/bootstrap-theme.css" %>
+    .Questions{
+        border:2px solid grey;
+        margin:5px;margin-bottom:15px;padding:10px;
+        /* border-radius: 50px; */
+
+    }
+    span{
+    color: blue;
+    }
+</style>
+</head>
+<body>
+<% if (request.getAttribute("data") == null) { %>
+        
+         <%  session.setAttribute("flag", "0");%>
+         
+<% } %>
+<div class="container">
+	<div class="jumbotron">
+	  <h1 class="display-4">Welcome to APJ Quiz app!</h1>
+	  <p class="lead">This is a simple quiz application</p>
+	  <hr class="my-4">
+	  <p>Developer: Sarvin SS<br>Laguages used: jsp and servlet</p>
+	</div>
+	<% if (session.getAttribute("flag").equals("1")) { %>
+        <h1> <%="Marks obtained:<span >"+ request.getAttribute("data") +"</span> out of 5"%><h1>
+        
+         <form action="valu" method="get">
+         	<input class="btn btn-primary" type="submit" value="Retake" />
+         </form>
+          
+         
+      <% } %>
+      <h6>Total Questions: 5</h6>
+	<form action="valu" method="get">
+	  
+	  
+		  <div class="Questions">
+            <h4>1. Which is the Birthplace of Dr.Apj Abdul Kalam?</h4>
+            <input type="radio" name="1" value="a">Kanyakumari<br>
+            <input type="radio" name="1" value="b">Rameshwaram<br>
+            <input type="radio" name="1" value="c">Tuticorin<br>
+            <input type="radio" name="1" value="d">Thanjavur<br>
+        </div>
+        <div class="Questions">
+            <h4>2.When was Dr.Apj Abdul Kalam born?</h4>
+            <input type="radio" name="2" value="a">15.10.1931<br>
+            <input type="radio" name="2" value="b">20.07.1935<br>
+            <input type="radio" name="2" value="c">15.10.1930<br>
+            <input type="radio" name="2" value="d">20.07.1932<br>
+        </div>
+        <div class="Questions">
+            <h4>3. What is the Profession of Dr.Apj Abdul Kalam?</h4>
+            <input type="radio" name="3" value="a">Agriculture Scientist<br>
+            <input type="radio" name="3" value="b">Atmospheric Scientist<br>
+            <input type="radio" name="3" value="c">Astronomic Scientist<br>
+            <input type="radio" name="3" value="d">AeroSpace Scientist<br>
+        </div>
+        <div class="Questions">
+            <h4>4. An Autobiography of Dr.Apj Abdul Kalam is? </h4>
+            <input type="radio" name="4" value="a">India 2020<br>
+            <input type="radio" name="4" value="b">Wings of fire<br>
+            <input type="radio" name="4" value="c">Ignited Minds<br>
+            <input type="radio" name="4" value="d">All the above<br>
+        </div>
+        <div class="Questions">
+            <h4>5. Dr.Apj Abdul Kalam also act as a _______?</h4>
+            <input type="radio" name="5" value="a">Farmer<br>
+            <input type="radio" name="5" value="b">Doctor<br>
+            <input type="radio" name="5" value="c">Politician<br>
+            <input type="radio" name="5" value="d">Driver<br>
+        </div>
+		  
+		  <input class="btn btn-primary" type="submit" value="submit" /><br>
+	      
+	
+	</form> 
+    </div>
+</body>
+</html>

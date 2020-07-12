@@ -1,0 +1,52 @@
+package com.filesys;
+
+
+import java.io.*;
+import java.util.*;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+@WebServlet(name = "serv2", urlPatterns = {"/valu"} )
+@MultipartConfig
+
+public class ValuateQuiz extends HttpServlet {
+   
+	public void doGet(HttpServletRequest req,HttpServletResponse res)  
+			throws ServletException,IOException  
+			{  
+			res.setContentType("text/html"); 
+			HttpSession session = req.getSession();
+			RequestDispatcher rd =  req.getRequestDispatcher("indexofquiz.jsp");  
+			if (session.getAttribute("flag").equals("1"))
+			{
+				res.setContentType("text/html"); 
+				session.setAttribute("flag", "0");
+				rd.forward(req, res); 
+			}
+			else {
+				String[] ans = new String[]{"b","a","d","b","c"};
+				int count=0;
+				for(int i=0;i<5;i++)
+				{
+					String name=req.getParameter(String.valueOf(i+1)); 
+					if(name.equals(ans[i])) 
+					{
+						count=count+1;
+					}
+					
+				}
+				session.setAttribute("flag", "1");
+				req.setAttribute("data", count); 
+				rd.forward(req, res);
+			}
+			}
+   
+}
